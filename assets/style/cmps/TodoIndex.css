@@ -1,0 +1,14 @@
+
+.todo-index{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.todo-index h2{
+align-self: center;
+}
+
+.todo-index .add-todo{
+    align-self: center;
+}

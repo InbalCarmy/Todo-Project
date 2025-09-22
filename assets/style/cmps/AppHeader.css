@@ -26,6 +26,13 @@ a.active {
     text-decoration: underline;
 }
 
+.header-container .user{
+    display: flex;
+    align-items:center;
+}
+
+
+
 
 @media (max-width: 720px) {
     .app-header {

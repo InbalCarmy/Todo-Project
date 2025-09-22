@@ -25,7 +25,7 @@ export function AppHeader() {
             <section className="header-container">
                 <h1>React Todo App</h1>
                 {user ? (
-                    < section >
+                    < section className='user'>
                         <Link to={`/user/${user._id}`}>Hello {user.fullname} (Balance: {user.balance || 0})</Link>
                         <button onClick={onLogout}>Logout</button>
                     </ section >

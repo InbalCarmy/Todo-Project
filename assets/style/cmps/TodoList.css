@@ -11,9 +11,11 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    border-radius: 7px;
+    position: relative;
 }
 
-.importance-1  { background-color: #f8d7da; } 
+/* .importance-1  { background-color: #f8d7da; } 
 .importance-2  { background-color: #f5c6cb; }
 .importance-3  { background-color: #f1b0b7; }
 .importance-4  { background-color: #ec9fa6; }
@@ -23,5 +25,24 @@
 .importance-8  { background-color: #d14a4f; }
 .importance-9  { background-color: #c82333; } 
 .importance-10 { background-color: #bd2130; } 
-.importance-10plus { background-color: #bd2130; } 
+.importance-10plus { background-color: #bd2130; }  */
 
+.todo-list .remove-btn{
+    border-radius: 50%;
+    position: absolute;
+    bottom: 90%;
+    left: 90%;
+}
+
+.importance-1  { background-color: #fde2e4; } 
+.importance-2  { background-color: #fad2e1; } 
+.importance-3  { background-color: #e2ece9; } 
+.importance-4  { background-color: #bee1e6; } 
+.importance-5  { background-color: #f0efeb; } 
+
+.importance-6  { background-color: #dfe7fd; } 
+.importance-7  { background-color: #cddafd; } 
+.importance-8  { background-color: #d1e5f0; } 
+.importance-9  { background-color: #c6def1; } 
+.importance-10 { background-color: #c9e4de; } 
+.importance-10plus { background-color: #c9e4de; }

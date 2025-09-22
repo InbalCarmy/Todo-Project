@@ -18,12 +18,12 @@ export function TodoList({ todos, onRemoveTodo, onToggleTodo }) {
                 <li className={`importance-${importanceLevel(todo)}`} key={todo._id}>
                     <TodoPreview todo={todo} onToggleTodo={()=>onToggleTodo(todo)} />
                     <section>
-                        <button onClick={() => {
+                        <button className='remove-btn' onClick={() => {
                             if(window.confirm("Are you sure you want to delete this todo?")){
                                 onRemoveTodo(todo._id)
                             }
                         }}>
-                         Remove
+                         X
                         </button>
                         <button><Link to={`/todo/${todo._id}`}>Details</Link></button>
                         <button><Link to={`/todo/edit/${todo._id}`}>Edit</Link></button>

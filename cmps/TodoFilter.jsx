@@ -39,24 +39,34 @@ export function TodoFilter({ filterBy, onSetFilterBy }) {
     return (
         <section className="todo-filter">
             <h2>Filter Todos</h2>
+
             <form onSubmit={onSubmitFilter}>
-                <input value={txt} onChange={handleChange}
-                    type="search" placeholder="By Txt" id="txt" name="txt"
-                />
+                <div>
+                    <label htmlFor="txt">Text: </label>
+                    <input value={txt} onChange={handleChange}
+                        type="search" placeholder="By Txt" id="txt" name="txt"
+                    />
 
-                <label htmlFor="importance">Importance: </label>
-                <input value={importance} onChange={handleChange}
-                    type="number" placeholder="By Importance" id="importance" name="importance"
-                />
+                </div>
 
-                <label htmlFor="importance">Status: </label>
-                <select value={status} onChange={handleChange}
-                     id="status" name="status"
-                >
-                <option value="">All</option>
-                <option value="active">Active</option>
-                <option value="done">Done</option>
-                </select>
+                <div>
+                    <label htmlFor="importance">Importance: </label>
+                    <input value={importance} onChange={handleChange}
+                        type="number" placeholder="By Importance" id="importance" name="importance"
+                    />          
+                </div>
+
+                <div>
+                        <label htmlFor="importance">Status: </label>
+                        <select value={status} onChange={handleChange}
+                            id="status" name="status"
+                        >
+                        <option value="">All</option>
+                        <option value="active">Active</option>
+                        <option value="done">Done</option>
+                        </select>            
+                </div>
+
                 <button hidden>Set Filter</button>
             </form>
         </section>

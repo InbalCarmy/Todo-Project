@@ -46,7 +46,7 @@ export function TodoIndex() {
     return (
         <section className="todo-index">
             <TodoFilter filterBy={filterBy} onSetFilterBy={setFilterBy} />
-            <div>
+            <div className="add-todo">
                 <Link to="/todo/edit" className="btn" >Add Todo</Link>
             </div>
             <h2>Todos List</h2>
