@@ -1,0 +1,17 @@
+
+
+.user-details{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.color-pref{
+    display: flex;
+    flex-direction: row;
+    gap: 100px;
+}
+
+.user-details h1{
+    align-self: center;
+}

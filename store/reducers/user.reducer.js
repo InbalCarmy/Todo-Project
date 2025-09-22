@@ -2,7 +2,7 @@ import { userService } from "../../services/user.service.js"
 
 //* User
 export const SET_USER = 'SET_USER'
-export const SET_USER_SCORE = 'SET_USER_SCORE'
+export const EDIT_USER = 'EDIT_USER'
 
 
 const initialState = {
@@ -16,6 +16,12 @@ export function userReducer(state = initialState, cmd) {
                 ...state,
                 loggedInUser: cmd.user
             }
+
+        case EDIT_USER:
+           return { 
+                ...state,
+                loggedInUser: cmd.user
+           } 
         default:
             return state
     }

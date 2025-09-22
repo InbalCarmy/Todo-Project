@@ -58,18 +58,20 @@ function _setLoggedinUser(user) {
 function getEmptyCredentials() {
     return {
         fullname: '',
-        username: 'muki',
-        password: 'muki1',
+        username: '',
+        password: '',
         balance : 0,
         activities: []
     }
 }
 
 function save(user) {
-    _setLoggedinUser(user)
     if (user._id) {
         return storageService.put(STORAGE_KEY, user)
+            .then(() => _setLoggedinUser(user))
     } else {
         return storageService.post(STORAGE_KEY, user)
+            .then(_setLoggedinUser(user))
+
     }
 }

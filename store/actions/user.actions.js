@@ -1,6 +1,6 @@
 import { userService } from "../../services/user.service.js";
 import { store } from "../store.js";
-import { SET_USER } from "../reducers/user.reducer.js"
+import { EDIT_USER, SET_USER } from "../reducers/user.reducer.js"
 
 export function login(credentials) {
     return userService.login(credentials)
@@ -48,4 +48,16 @@ export function updateBalance(todoTxt) {
             store.dispatch({ type: SET_USER, user: savedUser })
             return savedUser
         })
+}
+
+export function saveUser(user){
+    return userService.save(user)
+    .then((savedUser) => {
+        store.dispatch({type: EDIT_USER, user: savedUser})
+        return savedUser
+    })
+    .catch(err => {
+        console.log('user action -> Cannot save user', err);
+        throw err;
+    })
 }
