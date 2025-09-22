@@ -1,6 +1,7 @@
 import { todoService } from "../../services/todo.service.js";
 import { store } from "../store.js";
 import { ADD_TODO, REMOVE_TODO, SET_TODOS, UNDO_TODOS, UPDATE_TODO } from "../reducers/todo.reducer.js";
+import { updateBalance } from "./user.actions.js";
 
 
 
@@ -30,9 +31,18 @@ export function removeTodo(todoId) {
 
 export function saveTodo(todo) {
     const type = todo._id ? UPDATE_TODO : ADD_TODO
+    const prevTodo = store.getState().todoModule.todos.find(t => t._id === todo._id)
+    const wasNotDone = prevTodo._id && !prevTodo.isDone
+
     return todoService.save(todo)
         .then((savedTodo) => {
             store.dispatch({ type, todo: savedTodo })
+            
+            // If todo was just marked as done, update user balance
+            if (wasNotDone && savedTodo.isDone) {
+                updateBalance(todo.txt)
+            }
+            
             return savedTodo
         })
         .catch(err => {
