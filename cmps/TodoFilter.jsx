@@ -35,7 +35,7 @@ export function TodoFilter({ filterBy, onSetFilterBy }) {
         onSetFilterBy(filterByToEdit)
     }
 
-    const { txt, importance } = filterByToEdit
+    const { txt, importance, status } = filterByToEdit
     return (
         <section className="todo-filter">
             <h2>Filter Todos</h2>
@@ -43,11 +43,20 @@ export function TodoFilter({ filterBy, onSetFilterBy }) {
                 <input value={txt} onChange={handleChange}
                     type="search" placeholder="By Txt" id="txt" name="txt"
                 />
+
                 <label htmlFor="importance">Importance: </label>
                 <input value={importance} onChange={handleChange}
                     type="number" placeholder="By Importance" id="importance" name="importance"
                 />
 
+                <label htmlFor="importance">Status: </label>
+                <select value={status} onChange={handleChange}
+                     id="status" name="status"
+                >
+                <option value="">All</option>
+                <option value="active">Active</option>
+                <option value="done">Done</option>
+                </select>
                 <button hidden>Set Filter</button>
             </form>
         </section>

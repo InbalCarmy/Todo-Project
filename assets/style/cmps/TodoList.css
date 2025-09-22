@@ -11,5 +11,17 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    background-color: var(--clr1bg);
 }
+
+.importance-1  { background-color: #f8d7da; } 
+.importance-2  { background-color: #f5c6cb; }
+.importance-3  { background-color: #f1b0b7; }
+.importance-4  { background-color: #ec9fa6; }
+.importance-5  { background-color: #e6858f; }
+.importance-6  { background-color: #e07078; }
+.importance-7  { background-color: #d85c62; }
+.importance-8  { background-color: #d14a4f; }
+.importance-9  { background-color: #c82333; } 
+.importance-10 { background-color: #bd2130; } 
+.importance-10plus { background-color: #bd2130; } 
+

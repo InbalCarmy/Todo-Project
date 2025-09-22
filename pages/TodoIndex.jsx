@@ -11,15 +11,12 @@ const {useSelector} = ReactRedux
 
 export function TodoIndex() {
 
-    const [_, setTodos] = useState(null)
+    // const [_, setTodos] = useState(null)
 
     const todos = useSelector(storeState => storeState.todoModule.todos)
-
     // Special hook for accessing search-params:
     const [searchParams, setSearchParams] = useSearchParams()
-
     const defaultFilter = todoService.getFilterFromSearchParams(searchParams)
-
     const [filterBy, setFilterBy] = useState(defaultFilter)
 
     useEffect(() => {
