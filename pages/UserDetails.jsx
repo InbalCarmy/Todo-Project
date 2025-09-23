@@ -3,19 +3,16 @@ const { useState, useEffect } = React
 
 
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
-import { saveUser } from "../store/actions/user.actions.js"
+import { changeBGcolor, changeColor, saveUser } from "../store/actions/user.actions.js"
 import {ColorPref} from "../cmps/ColorPref.jsx"
 
 
 
 
 export function UserDetails(){
-
-    const [prefs, setPrefs] = useState({
-        backgroundColor: 'white',
-        color: 'black'
-    })
     const user = useSelector(storeState => storeState.useModule.loggedInUser)
+    const bgColor= useSelector(storeState => storeState.useModule.backgroundcolor)
+    const color= useSelector(storeState => storeState.useModule.color)
     const [userToEdit, setUserToEdit] = useState(user)
 
     function handleChange({ target }) {
@@ -44,13 +41,23 @@ export function UserDetails(){
             .catch(err => showErrorMsg('Had issues saving user'))
     }
 
-    function onSetPref(newPref){
-        setPrefs(prevPrefs => ({...prevPrefs, ...newPref}))
+
+    function onSetBGcolor(BGcolor){
+        changeBGcolor(BGcolor, user)
+            .then((saveBGcolor) => showSuccessMsg('backgroundcolor changed!'))
+            .catch(err => showErrorMsg('Cannot change BGcolor'))
+
+    }
+
+    function onSetColor(color){
+        changeColor(color, user)
+            .then((saveColor) => showSuccessMsg('Color changed!'))
+            .catch(err => showErrorMsg('Cannot change color'))
     }
 
 
     return(
-        <section className="user-details" style={{ backgroundColor: prefs.backgroundColor, color: prefs.color }}>
+        <section className="user-details" style={{ backgroundColor: bgColor, color: color }}>
             <h2>Profile</h2>
             <form onSubmit={onEditUser} >
                 <div>
@@ -60,13 +67,11 @@ export function UserDetails(){
                     />
                 </div>
 
-                {/* <h1>Preferences:</h1>
-                <ColorPref onSetPref={onSetPref} {...prefs} /> */}
                 <button >Save</button>
             </form>
 
             <h1>Preferences:</h1>
-            <ColorPref onSetPref={onSetPref} {...prefs} />
+            <ColorPref onSetColor={onSetColor} onSetBGcolor={onSetBGcolor} backgroundColor={bgColor} color={color} />
         </section>
 
 

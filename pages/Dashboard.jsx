@@ -1,8 +1,12 @@
 const { useEffect, useState } = React
+const {useSelector} = ReactRedux
+
 import {Chart} from '../cmps/Chart.jsx'
 import { todoService } from '../services/todo.service.js'
 
 export function Dashboard() {
+    const bgColor= useSelector(storeState => storeState.useModule.backgroundcolor)
+    const color= useSelector(storeState => storeState.useModule.color)
 
     const [todos, setTodos] = useState([])
     const [importanceStats, setImportanceStats] = useState([])
@@ -16,7 +20,7 @@ export function Dashboard() {
 
 
     return (
-        <section className="dashboard">
+        <section className="dashboard" style={{ backgroundColor: bgColor, color: color }}>
             <h1>Dashboard</h1>
             <h2>Statistics for {todos.length} Todos</h2>
             <hr />

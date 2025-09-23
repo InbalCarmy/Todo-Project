@@ -3,12 +3,16 @@ import { showErrorMsg } from "../services/event-bus.service.js"
 
 const { useState, useEffect } = React
 const { useParams, useNavigate, Link } = ReactRouterDOM
+const {useSelector} = ReactRedux
+
 
 export function TodoDetails() {
 
     const [todo, setTodo] = useState(null)
     const params = useParams()
     const navigate = useNavigate()
+    const bgColor= useSelector(storeState => storeState.useModule.backgroundcolor)
+    const color= useSelector(storeState => storeState.useModule.color)
 
     useEffect(() => {
         loadTodo()
@@ -33,7 +37,7 @@ export function TodoDetails() {
 
     if (!todo) return <div>Loading...</div>
     return (
-        <section className="todo-details">
+        <section className="todo-details" style={{ backgroundColor: bgColor, color: color }}>
             <h1 className={(todo.isDone)? 'done' : ''}>{todo.txt}</h1>
             <h2>{(todo.isDone)? 'Done!' : 'In your list'}</h2>
 

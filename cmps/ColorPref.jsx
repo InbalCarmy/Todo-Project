@@ -1,14 +1,22 @@
 
+export function ColorPref({onSetBGcolor, onSetColor, backgroundColor, color}) {
 
-export function ColorPref({onSetPref, backgroundColor, color}) {
+    const bgColors = [
+        { name: 'White', value: '#FFFFFF' },
+        { name: 'Light Gray', value: '#F5F5F5' },
+        { name: 'Light Blue', value: '#E3F2FD' },
+        { name: 'Light Purple', value: '#F3E5F5' },
+        { name: 'Light Green', value: '#E8F5E9' },
+        { name: 'Light Orange', value: '#FFF3E0' },
+    ]
 
-    const colors = [
-        '#F44236',
-        '#9C27B0',
-        '#3F51B5',
-        '#2196F3',
-        '#4caf50',
-        '#101010',
+    const fontColors = [
+        { name: 'Black', value: '#000000' },
+        { name: 'Dark Gray', value: '#212121' },
+        { name: 'Dark Blue', value: '#1565C0' },
+        { name: 'Dark Purple', value: '#6A1B9A' },
+        { name: 'Dark Green', value: '#2E7D32' },
+        { name: 'Dark Orange', value: '#E65100' },
     ]
 
     console.log('backgroundcolor: ', backgroundColor);
@@ -32,25 +40,26 @@ export function ColorPref({onSetPref, backgroundColor, color}) {
 
             default: break
         }
-        // setUserToEdit(prevUser => ({ ...prevUser, [field]: value }))
     }
 
-    function onSetColor(backgroundColor, color) {
-        onSetPref({ 
-            backgroundColor: backgroundColor,
-            color: color
-         })
+    function setColor(color) {
+        onSetColor(color)
+    }    
+    
+    function setBGcolor(bgColor) {
+        onSetBGcolor(bgColor)
     }
+
 
     return (
         <section className="color-pref">
             <div>
                 <label htmlFor="bgColor">BG Color: </label>
-                <select value={backgroundColor} onChange={(e) => onSetPref({ backgroundColor: e.target.value })}
+                <select value={backgroundColor} onChange={(e) => setBGcolor(e.target.value )}
                     id="bgColor" name="bgColor">
-                    {colors.map(color => (
-                        <option key={color} value={color}>
-                            {color}
+                    {bgColors.map(color => (
+                        <option key={color.value} value={color.value}>
+                            {color.name}
                         </option>
                     ))}
                 </select>  
@@ -58,11 +67,11 @@ export function ColorPref({onSetPref, backgroundColor, color}) {
 
             <div>
                 <label htmlFor="color">Color: </label>
-                <select value={color} onChange={(e) => onSetPref({ color: e.target.value })}
+                <select value={color} onChange={(e) => setColor(e.target.value )}
                     id="color" name="color">
-                    {colors.map(color => (
-                        <option key={color} value={color}>
-                            {color}
+                    {fontColors.map(color => (
+                        <option key={color.value} value={color.value}>
+                            {color.name}
                         </option>
                     ))}
                 </select>            

@@ -4,8 +4,6 @@ import { ADD_TODO, REMOVE_TODO, SET_TODOS, UNDO_TODOS, UPDATE_TODO } from "../re
 import { updateBalance } from "./user.actions.js";
 
 
-
-
 export function loadTodos(filterBy) {
     return todoService.query(filterBy)
     .then(todos => {
@@ -38,7 +36,6 @@ export function saveTodo(todo) {
         .then((savedTodo) => {
             store.dispatch({ type, todo: savedTodo })
             
-            // If todo was just marked as done, update user balance
             if (wasNotDone && savedTodo.isDone) {
                 updateBalance(todo.txt)
             }

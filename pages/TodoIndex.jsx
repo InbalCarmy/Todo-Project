@@ -11,7 +11,8 @@ const {useSelector} = ReactRedux
 
 export function TodoIndex() {
 
-    // const [_, setTodos] = useState(null)
+    const bgColor= useSelector(storeState => storeState.useModule.backgroundcolor)
+    const color= useSelector(storeState => storeState.useModule.color)
 
     const todos = useSelector(storeState => storeState.todoModule.todos)
     // Special hook for accessing search-params:
@@ -44,7 +45,7 @@ export function TodoIndex() {
 
     if (!todos) return <div>Loading...</div>
     return (
-        <section className="todo-index">
+        <section className="todo-index" style={{ backgroundColor: bgColor, color: color }}>
             <TodoFilter filterBy={filterBy} onSetFilterBy={setFilterBy} />
             <div className="add-todo">
                 <Link to="/todo/edit" className="btn" >Add Todo</Link>

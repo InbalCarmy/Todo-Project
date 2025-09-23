@@ -1,12 +1,16 @@
 const { useRef, useState } = React
 const { Outlet, NavLink } = ReactRouterDOM
-// const { PropTypes } = PropTypes
+const {useSelector} = ReactRedux
+
+
 
 import { utilService } from '../services/util.service.js'
 import { AboutTeam } from '../cmps/AboutTeam.jsx'
 import { AboutVision } from '../cmps/AboutVision.jsx'
 
 export function About() {
+    const bgColor= useSelector(storeState => storeState.useModule.backgroundcolor)
+    const color= useSelector(storeState => storeState.useModule.color)
     const titleRef = useRef()
     const count = 1000001
 
@@ -14,7 +18,7 @@ export function About() {
         alert('curiosity killed the cat')
     }
     return (
-        <section className="about">
+        <section className="about" style={{ backgroundColor: bgColor, color: color }}>
             <h1 ref={titleRef}>About todos and us...</h1>
             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio dolore sapiente, iste animi corporis nisi atque tempora assumenda dolores. Nobis nam dolorem rerum illo facilis nemo sit voluptatibus laboriosam necessitatibus!</p>
             <button onClick={() => {
