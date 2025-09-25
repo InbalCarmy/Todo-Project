@@ -75,16 +75,16 @@ export function UserDetails(){
                 <button >Save</button>
             </form>
 
-        <div>
-            <h1>Preferences:</h1>
-            <ColorPref onSetColor={onSetColor} onSetBGcolor={onSetBGcolor} backgroundColor={bgColor} color={color} />
-        </div>
+            <div>
+                <h1>Preferences:</h1>
+                <ColorPref onSetColor={onSetColor} onSetBGcolor={onSetBGcolor} backgroundColor={bgColor} color={color} />
+            </div>
 
+            <div>
+                <h1>Activities:</h1>
+                <ActivityList activities={user.activities} />
+            </div>
 
-            <h1>Activities:</h1>
-            <ActivityList activities={user.activities} />
-
-            
         </section>
 
 
