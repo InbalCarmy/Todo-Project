@@ -11,7 +11,6 @@ export const CHANGE_BG_COLOR ='CHANGE_BG_COLOR'
 export const CHANGE_COLOR = 'CHANGE_COLOR'
 
 
-const loggedInUser = userService.getLoggedinUser()
 const initialState = {
     loggedInUser: userService.getLoggedinUser(),
     backgroundcolor:'white',
