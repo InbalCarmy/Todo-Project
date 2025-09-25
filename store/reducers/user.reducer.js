@@ -12,9 +12,7 @@ export const CHANGE_COLOR = 'CHANGE_COLOR'
 
 
 const initialState = {
-    loggedInUser: userService.getLoggedinUser(),
-    backgroundcolor:'white',
-    color: 'black'
+    loggedInUser: userService.getLoggedinUser()
 }
 
 export function userReducer(state = initialState, cmd) {
@@ -33,14 +31,26 @@ export function userReducer(state = initialState, cmd) {
 
         case CHANGE_BG_COLOR:
             return {
-                ...state, 
-                backgroundcolor: cmd.backgroundcolor
+                ...state,
+                loggedInUser: {
+                    ...state.loggedInUser,
+                    prefs: {
+                        ...state.loggedInUser.prefs,
+                        backgroundcolor: cmd.backgroundcolor
+                    }
+                }
             }
 
         case CHANGE_COLOR:
             return {
                 ...state,
-                color: cmd.color
+                loggedInUser: {
+                    ...state.loggedInUser,
+                    prefs: {
+                        ...state.loggedInUser.prefs,
+                        color: cmd.color
+                    }
+                }
             }
         case ADD_ACTIVITY:
             return {

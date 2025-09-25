@@ -1,5 +1,5 @@
 
-export function ColorPref({onSetBGcolor, onSetColor, backgroundColor, color}) {
+export function ColorPref({onSetBGcolor, onSetColor , backgroundColor = 'white', color= 'black'}) {
 
     const bgColors = [
         { name: 'White', value: '#FFFFFF' },
@@ -18,10 +18,6 @@ export function ColorPref({onSetBGcolor, onSetColor, backgroundColor, color}) {
         { name: 'Dark Green', value: '#2E7D32' },
         { name: 'Dark Orange', value: '#E65100' },
     ]
-
-    console.log('backgroundcolor: ', backgroundColor);
-    console.log('color: ', color);
-    
     
 
     function handleChange({ target }) {

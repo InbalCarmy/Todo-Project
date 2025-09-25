@@ -8,12 +8,13 @@ const {useSelector} = ReactRedux
 
 
 export function TodoEdit() {
+    const user = useSelector(storeState => storeState.useModule.loggedInUser)
+    const prefs = user && user.prefs || {}
 
     const [todoToEdit, setTodoToEdit] = useState(todoService.getEmptyTodo())
     const navigate = useNavigate()
     const params = useParams()
-    const bgColor= useSelector(storeState => storeState.useModule.backgroundcolor)
-    const color= useSelector(storeState => storeState.useModule.color)
+
 
     useEffect(() => {
         if (params.todoId) loadTodo()
@@ -59,7 +60,7 @@ export function TodoEdit() {
     const { txt, importance, isDone } = todoToEdit
 
     return (
-        <section className="todo-edit" style={{ backgroundColor: bgColor, color: color }}>
+        <section className="todo-edit" style={{ backgroundColor: prefs.backgroundcolor, color: prefs.color }}>
             <form onSubmit={onSaveTodo} >
                 <label htmlFor="txt">Text:</label>
                 <input onChange={handleChange} value={txt} type="text" name="txt" id="txt" />

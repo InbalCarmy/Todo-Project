@@ -84,8 +84,6 @@ function save(user) {
         return storageService.put(STORAGE_KEY, user)
             .then(() => _setLoggedinUser(user))
     } else {
-        return storageService.post(STORAGE_KEY, user)
-            .then(_setLoggedinUser(user))
-
+        return signup(user.username, user.password, user.fullname)
     }
 }

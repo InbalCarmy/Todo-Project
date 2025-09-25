@@ -24,6 +24,20 @@ export function removeTodo(todoId) {
             store.dispatch({ type: REMOVE_TODO, todoId })
         })
         .catch(err => {
+            store.dispatch({type: UNDO_TODOS})
+            console.log('todo action -> Cannot remove todo', err)
+            throw err
+        })
+}
+
+export function removeTodoOptimistic(todoId) {
+    const todo = store.getState().todoModule.todos.find(t => t._id === todoId)
+    store.dispatch({ type: REMOVE_TODO, todoId })
+    return todoService.remove(todoId)
+        .then(() => {
+            addActivity('Remove a Todo', todo.txt)
+        })
+        .catch(err => {
             console.log('todo action -> Cannot remove todo', err)
             throw err
         })

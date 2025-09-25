@@ -9,8 +9,9 @@ import { AboutTeam } from '../cmps/AboutTeam.jsx'
 import { AboutVision } from '../cmps/AboutVision.jsx'
 
 export function About() {
-    const bgColor= useSelector(storeState => storeState.useModule.backgroundcolor)
-    const color= useSelector(storeState => storeState.useModule.color)
+    const user = useSelector(storeState => storeState.useModule.loggedInUser)
+    const prefs = user && user.prefs || {}
+
     const titleRef = useRef()
     const count = 1000001
 
@@ -18,7 +19,7 @@ export function About() {
         alert('curiosity killed the cat')
     }
     return (
-        <section className="about" style={{ backgroundColor: bgColor, color: color }}>
+        <section className="about" style={{ backgroundColor: prefs.backgroundcolor, color: prefs.color }}>
             <h1 ref={titleRef}>About todos and us...</h1>
             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio dolore sapiente, iste animi corporis nisi atque tempora assumenda dolores. Nobis nam dolorem rerum illo facilis nemo sit voluptatibus laboriosam necessitatibus!</p>
             <button onClick={() => {

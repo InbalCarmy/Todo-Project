@@ -32,7 +32,9 @@ export function todoReducer(state = initialState, cmd){
         case REMOVE_TODO:
             return {
                 ...state,
-                todos: state.todos.filter(todo => todo._id !== cmd.todoId)
+                todos: state.todos.filter(todo => todo._id !== cmd.todoId),
+                lastTodos: [...state.todos]
+
             }
 
         case UPDATE_TODO:

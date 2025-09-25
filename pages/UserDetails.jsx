@@ -12,8 +12,6 @@ import { ActivityList } from "../cmps/ActivityList.jsx"
 
 export function UserDetails(){
     const user = useSelector(storeState => storeState.useModule.loggedInUser)
-    const bgColor= useSelector(storeState => storeState.useModule.backgroundcolor)
-    const color= useSelector(storeState => storeState.useModule.color)
     const [userToEdit, setUserToEdit] = useState(user)
 
     useEffect(() => {
@@ -64,7 +62,7 @@ export function UserDetails(){
 
 
     return(
-        <section className="user-details" style={{ backgroundColor: bgColor, color: color }}>
+        <section className="user-details" style={{ backgroundColor: user.prefs && user.prefs.backgroundcolor, color: user.prefs && user.prefs.color }}>
             
             <form onSubmit={onEditUser} >
                 <h2>Profile</h2>
@@ -77,7 +75,7 @@ export function UserDetails(){
 
             <div>
                 <h1>Preferences:</h1>
-                <ColorPref onSetColor={onSetColor} onSetBGcolor={onSetBGcolor} backgroundColor={bgColor} color={color} />
+                <ColorPref onSetColor={onSetColor} onSetBGcolor={onSetBGcolor} backgroundColor={user.prefs.backgroundcolor} color={user.prefs.color} />
             </div>
 
             <div>
