@@ -1,7 +1,7 @@
 import { todoService } from "../../services/todo.service.js";
 import { store } from "../store.js";
 import { ADD_TODO, REMOVE_TODO, SET_TODOS, UNDO_TODOS, UPDATE_TODO } from "../reducers/todo.reducer.js";
-import { updateBalance } from "./user.actions.js";
+import { addActivity, updateBalance } from "./user.actions.js";
 
 
 export function loadTodos(filterBy) {
@@ -17,8 +17,10 @@ export function loadTodos(filterBy) {
 }
 
 export function removeTodo(todoId) {
+    const todo = store.getState().todoModule.todos.find(t => t._id === todoId)
     return todoService.remove(todoId)
         .then(() => {
+            addActivity('Remove a Todo', todo.txt)
             store.dispatch({ type: REMOVE_TODO, todoId })
         })
         .catch(err => {
@@ -29,8 +31,11 @@ export function removeTodo(todoId) {
 
 export function saveTodo(todo) {
     const type = todo._id ? UPDATE_TODO : ADD_TODO
+    if(type === ADD_TODO){
+        addActivity('Added a Todo', todo.txt)
+    }
     const prevTodo = store.getState().todoModule.todos.find(t => t._id === todo._id)
-    const wasNotDone = prevTodo._id && !prevTodo.isDone
+    const wasNotDone = prevTodo && !prevTodo.isDone
 
     return todoService.save(todo)
         .then((savedTodo) => {

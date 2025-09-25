@@ -5,6 +5,7 @@ const { useState, useEffect } = React
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
 import { changeBGcolor, changeColor, saveUser } from "../store/actions/user.actions.js"
 import {ColorPref} from "../cmps/ColorPref.jsx"
+import { ActivityList } from "../cmps/ActivityList.jsx"
 
 
 
@@ -14,6 +15,12 @@ export function UserDetails(){
     const bgColor= useSelector(storeState => storeState.useModule.backgroundcolor)
     const color= useSelector(storeState => storeState.useModule.color)
     const [userToEdit, setUserToEdit] = useState(user)
+
+    useEffect(() => {
+        setUserToEdit(user)
+    }, [user])
+
+    if (!user) return <div>Please log in</div>
 
     function handleChange({ target }) {
         const field = target.name
@@ -58,20 +65,26 @@ export function UserDetails(){
 
     return(
         <section className="user-details" style={{ backgroundColor: bgColor, color: color }}>
-            <h2>Profile</h2>
+            
             <form onSubmit={onEditUser} >
-                <div>
+                <h2>Profile</h2>
                     <label htmlFor="fullname">Name: </label>
                     <input value={userToEdit.fullname || ''} onChange={handleChange}
                         type="search" id="fullname" name="fullname"
                     />
-                </div>
-
                 <button >Save</button>
             </form>
 
+        <div>
             <h1>Preferences:</h1>
             <ColorPref onSetColor={onSetColor} onSetBGcolor={onSetBGcolor} backgroundColor={bgColor} color={color} />
+        </div>
+
+
+            <h1>Activities:</h1>
+            <ActivityList activities={user.activities} />
+
+            
         </section>
 
 

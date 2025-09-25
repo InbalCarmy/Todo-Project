@@ -1,6 +1,6 @@
 import { userService } from "../../services/user.service.js";
 import { store } from "../store.js";
-import { EDIT_USER, SET_USER, CHANGE_BG_COLOR, CHANGE_COLOR } from "../reducers/user.reducer.js"
+import { EDIT_USER, SET_USER, CHANGE_BG_COLOR, CHANGE_COLOR, ADD_ACTIVITY } from "../reducers/user.reducer.js"
 
 export function login(credentials) {
     return userService.login(credentials)
@@ -85,4 +85,28 @@ export function changeColor(color, user){
         console.log('user action -> Cannot save user', err);
         throw err;
     })
+}
+
+export function addActivity(txtOfActivity, todoTxt){
+    const currentUser = store.getState().useModule.loggedInUser
+    const activity = {
+        txt: txtOfActivity,
+        at: Date.now(), 
+        todo: todoTxt
+    }
+    const updatedUser = {
+        ...currentUser,
+        activities: [...(currentUser.activities || []), activity],
+    }
+    return userService.save(updatedUser)
+        .then(savedUser =>{
+            store.dispatch({type: ADD_ACTIVITY, activities: savedUser.activities})
+    })
+        .catch(err => {
+            console.log('user action -> Cannot save user', err);
+            throw err;
+    })
+
+
+
 }

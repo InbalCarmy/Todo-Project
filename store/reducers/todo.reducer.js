@@ -10,7 +10,7 @@ export const UNDO_TODOS = 'UNDO_TODOS'
 
 const initialState ={
     todos: [],
-    lastTodos: []
+    lastTodos: [],
 }
 
 export function todoReducer(state = initialState, cmd){
@@ -46,6 +46,7 @@ export function todoReducer(state = initialState, cmd){
                 ...state,
                 todos: [...state.lastTodos]
             }
+
 
         default:
             return state
